@@ -4,7 +4,7 @@
 <style>
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
   background-color: #2196F3;
   padding: 10px;
 }
@@ -35,6 +35,11 @@
   <div class="grid-item">7</div>
   <div class="grid-item">8</div>
   <div class="grid-item">9</div>  
+  <div class="grid-item">9</div>  
+  <div class="grid-item">9</div>  
+  <div class="grid-item">9</div>  
+  <div class="grid-item">9</div>  
+  <div class="grid-item">9</div>  
 </div>
 
 <Button onclick="DoSomething()">ClickMe</Button>
@@ -51,6 +56,14 @@ function DoSomething() {
     newDiv.innerText = "3";
     newDiv.className = "grid-item";
     document.getElementById("hello").appendChild(newDiv);
+
+    document.getElementById("hello").innerHTML = '';
+    for (i = 0; i < 64; i++){
+        var newDiv2 = document.createElement("div");
+        newDiv2.className = "grid-item";
+        newDiv2.id = "grid"+i;
+        document.getElementById("hello").appendChild(newDiv2);
+    }
 }
 
 </script>
