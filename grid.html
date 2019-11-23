@@ -44,7 +44,15 @@
 
 <Button onclick="DoSomething()">ClickMe</Button>
 
+<div onmouseover="onHover()">two</div>
+<Button onclick="Start()">start</Button>
 <script>
+  //subscribe to arrowkeys
+document.onkeydown = checkKey;
+var currRow = 1;
+var currColumn = 1;
+var currNodeName = "grid"+currRow+currColumn;
+
 function DoSomething() {
     console.log("hi");
     var arr = [1,2,4,5];
@@ -58,12 +66,63 @@ function DoSomething() {
     document.getElementById("hello").appendChild(newDiv);
 
     document.getElementById("hello").innerHTML = '';
-    for (i = 0; i < 64; i++){
-        var newDiv2 = document.createElement("div");
-        newDiv2.className = "grid-item";
-        newDiv2.id = "grid"+i;
-        document.getElementById("hello").appendChild(newDiv2);
+    for (j = 0; j < 8; j++){
+        for (i = 0; i < 8; i++){
+            var newDiv2 = document.createElement("div");
+            newDiv2.className = "grid-item";
+            newDiv2.id = "grid"+j+i;
+            newDiv2.onmouseover = "onHover()";
+            document.getElementById("hello").appendChild(newDiv2);            
+        }    
     }
+}
+function onHover(){
+  console.log("rock");
+}
+
+function Start(){
+  console.log("hey "+ currNodeName);
+  var element = document.getElementById(currNodeName);
+  element.innerHTML = "b";
+  ColorCurrent("red");
+}
+
+function ColorCurrent(color){
+  document.getElementById(currNodeName).style.backgroundColor = color;
+}
+
+function Move(row, column)
+{
+  currRow = row;
+  currColumn = column;
+  currNodeName = grid+row+column;
+}
+
+function MoveUp()
+{
+ if (currRow < 7)
+  Move(currRow+1);
+}
+
+function checkKey(e) {
+
+e = e || window.event;
+
+if (e.keyCode == '38') {
+    // up arrow
+    console.log("up");
+}
+else if (e.keyCode == '40') {
+    // down arrow
+    console.log("down");
+}
+else if (e.keyCode == '37') {
+   // left arrow
+}
+else if (e.keyCode == '39') {
+   // right arrow
+}
+
 }
 
 </script>
